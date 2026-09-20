@@ -231,6 +231,14 @@ footer a:hover{color:var(--gold);opacity:1}
 .field input{font:inherit;padding:12px 14px;border-radius:12px;border:2px solid var(--line);background:var(--paper);color:var(--text);width:100%}
 .field input:focus{outline:none;border-color:var(--ketchup)}
 .field small{color:var(--muted)}
+.pw-wrap{position:relative}
+.pw-wrap input{padding-inline-end:44px}
+.pw-toggle{position:absolute;top:50%;transform:translateY(-50%);inset-inline-end:6px;background:none;border:0;padding:8px;cursor:pointer;color:var(--muted);line-height:0}
+.pw-toggle:hover{color:var(--text)}
+.pw-toggle svg{width:20px;height:20px;display:block}
+.pw-toggle .i-eye-off{display:none}
+.pw-toggle.is-shown .i-eye{display:none}
+.pw-toggle.is-shown .i-eye-off{display:block}
 .err{color:var(--ketchup);font-weight:700;font-size:14.5px;min-height:1.4em;margin:0 0 10px}
 .modal .btn{width:100%;padding:13px}
 .switch{text-align:center;margin:16px 0 0;color:var(--muted)}
@@ -274,6 +282,18 @@ footer a:hover{color:var(--gold);opacity:1}
   .grid{grid-template-columns:1fr}
   .row{flex-wrap:wrap}
   .row .rprice{order:3}
+}
+@media (max-width:430px){
+  :root{--hh:58px}
+  header.site .wrap{min-height:58px;gap:6px}
+  header.site .logo-img{width:64px}
+  .auth{gap:6px}
+  .hdr-auth.btn{width:38px;height:38px;padding:0;border-radius:50%;flex:none}
+  .hdr-auth .txt{display:none}
+  .hdr-auth svg.ic{width:18px;height:18px}
+  .hello{display:none}
+  .auth .cart-btn,.cart-btn{width:38px;height:38px}
+  .cart-btn svg{width:19px;height:19px}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001s !important;transition-duration:.001s !important;scroll-behavior:auto !important}
@@ -406,12 +426,12 @@ footer a:hover{color:var(--gold);opacity:1}
     <div class="hactions">
     <button class="cart-btn" id="cartBtn" type="button" data-i18n-aria="cart"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-cart"/></svg><span class="cart-count hidden" id="cartCount">0</span></button>
     <div class="auth" id="authOut">
-      <button class="btn btn-ghost" type="button" data-open="login" data-i18n="login"></button>
-      <button class="btn btn-red" type="button" data-open="signup" data-i18n="signup"></button>
+      <button class="btn btn-ghost hdr-auth" type="button" data-open="login"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span class="txt" data-i18n="login"></span></button>
+      <button class="btn btn-red hdr-auth" type="button" data-open="signup"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="17" y1="11" x2="23" y2="11"/></svg><span class="txt" data-i18n="signup"></span></button>
     </div>
     <div class="auth hidden" id="authIn">
       <span class="hello" id="hello"></span>
-      <button class="btn btn-ghost" type="button" id="logoutBtn" data-i18n="logout"></button>
+      <button class="btn btn-ghost hdr-auth" type="button" id="logoutBtn"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg><span class="txt" data-i18n="logout"></span></button>
     </div>
     </div>
   </div>
@@ -530,7 +550,7 @@ footer a:hover{color:var(--gold);opacity:1}
     <p class="sub" data-i18n="login_sub"></p>
     <div id="loginForm">
       <div class="field"><label for="lp" data-i18n="phone"></label><input id="lp" type="tel" inputmode="tel" autocomplete="tel" data-i18n-ph="phone_ph"></div>
-      <div class="field"><label for="lw" data-i18n="password"></label><input id="lw" type="password" autocomplete="current-password"></div>
+      <div class="field"><label for="lw" data-i18n="password"></label><div class="pw-wrap"><input id="lw" type="password" autocomplete="current-password"><button type="button" class="pw-toggle" data-pw-toggle="lw" data-i18n-aria="show_password"><svg class="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"/><circle cx="12" cy="12" r="3"/></svg><svg class="i-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.94 10.94 0 0 1 12 20C5 20 1 12 1 12a20.3 20.3 0 0 1 5.06-5.94M9.9 4.24A10.5 10.5 0 0 1 12 4c7 0 11 8 11 8a20.3 20.3 0 0 1-3.22 4.41M14.12 14.12a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg></button></div></div>
       <p class="err" id="loginErr" role="alert"></p>
       <button class="btn btn-red" type="button" id="loginGo" data-i18n="login"></button>
     </div>
@@ -547,7 +567,7 @@ footer a:hover{color:var(--gold);opacity:1}
     <div id="signupForm">
       <div class="field"><label for="sn" data-i18n="fullname"></label><input id="sn" type="text" autocomplete="name"></div>
       <div class="field"><label for="sp" data-i18n="phone"></label><input id="sp" type="tel" inputmode="tel" autocomplete="tel" data-i18n-ph="phone_ph"></div>
-      <div class="field"><label for="sw" data-i18n="password"></label><input id="sw" type="password" autocomplete="new-password"><small data-i18n="pw_hint"></small></div>
+      <div class="field"><label for="sw" data-i18n="password"></label><div class="pw-wrap"><input id="sw" type="password" autocomplete="new-password"><button type="button" class="pw-toggle" data-pw-toggle="sw" data-i18n-aria="show_password"><svg class="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"/><circle cx="12" cy="12" r="3"/></svg><svg class="i-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.94 10.94 0 0 1 12 20C5 20 1 12 1 12a20.3 20.3 0 0 1 5.06-5.94M9.9 4.24A10.5 10.5 0 0 1 12 4c7 0 11 8 11 8a20.3 20.3 0 0 1-3.22 4.41M14.12 14.12a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg></button></div><small data-i18n="pw_hint"></small></div>
       <p class="err" id="signupErr" role="alert"></p>
       <button class="btn btn-red" type="button" id="signupGo" data-i18n="signup_go"></button>
     </div>
@@ -843,6 +863,7 @@ const I18N = {
     signup_title: "إنشاء حساب جديد", signup_sub: "انضم لعيلة Max's واطلب أسرع.",
     phone: "رقم الموبايل", phone_ph: "01xxxxxxxxx", password: "كلمة المرور", fullname: "الاسم الكامل",
     pw_hint: "٦ حروف أو أرقام على الأقل",
+    show_password: "إظهار كلمة المرور", hide_password: "إخفاء كلمة المرور",
     signup_go: "إنشاء الحساب",
     no_account: "معندكش حساب؟", have_account: "عندك حساب؟",
     close: "إغلاق",
@@ -894,6 +915,7 @@ const I18N = {
     signup_title: "Create an account", signup_sub: "Join the Max's family and order faster.",
     phone: "Mobile number", phone_ph: "01xxxxxxxxx", password: "Password", fullname: "Full name",
     pw_hint: "At least 6 characters",
+    show_password: "Show password", hide_password: "Hide password",
     signup_go: "Create account",
     no_account: "Don't have an account?", have_account: "Already have an account?",
     close: "Close",
@@ -1163,6 +1185,15 @@ async function deviceInfo(){
   if (!d.model && /iPad/.test(ua)) d.model = "iPad";
   return d;
 }
+document.querySelectorAll("[data-pw-toggle]").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const inp = document.getElementById(btn.dataset.pwToggle);
+    const show = inp.type === "password";
+    inp.type = show ? "text" : "password";
+    btn.classList.toggle("is-shown", show);
+    btn.setAttribute("aria-label", t(show ? "hide_password" : "show_password"));
+  });
+});
 async function api(action, payload){
   const r = await fetch(CONFIG.BACKEND_URL, { method:"POST", headers:{ "Content-Type":"text/plain;charset=utf-8" }, body: JSON.stringify({ action, ...payload }) });
   return await r.json();
